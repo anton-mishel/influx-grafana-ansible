@@ -1,0 +1,15 @@
+#- name: install collectd on compute hosts
+#  hosts: computehosts
+#  vars_files:
+#    - vars/external_vars.yml
+#  user: root
+#  roles:
+#    - collectd-ubuntu
+- name: install collectd on genomagicapi test
+  hosts: mapr
+  vars_files:
+    - vars/external_vars.yml
+  user: root
+  roles:
+    - collectd-centos
+

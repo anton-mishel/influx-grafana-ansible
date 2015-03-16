@@ -1,0 +1,21 @@
+---
+- name: install influx task
+  hosts: influxservers
+  vars_files:
+    - vars/external_vars.yml
+  user: root
+
+  roles:
+    - influxdb
+    - collectd-centos
+
+- name: install grafana task
+  hosts: grafanaservers
+  vars_files:
+    - vars/external_vars.yml
+  user: root
+
+  roles:
+    - nginx
+    - grafana
+    - collectd-centos

@@ -1,0 +1,45 @@
+---
+- name: Install EPEL repo.
+  yum:
+    name: http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    state: present
+
+- name: server-metrics - install python-dev
+  yum: name=python-devel state=latest
+
+- name: server-metrics - install pip
+  yum: name=python-pip state=latest
+
+- name: install gcc
+  yum: name=gcc state=latest
+
+- name: server-metrics - update pip
+  pip: name=pip extra_args="--upgrade"
+
+- name: server-metrics - install git
+  yum: name=git-core state=latest
+
+- name: server-metrics - clone repo
+  git: repo=https://github.com/bitmazk/python-server-metrics-scripts dest=/opt/python-server-metrics-scripts
+
+- name: server-metrics - install requirements
+  pip: requirements=/opt/python-server-metrics-scripts/requirements.txt
+
+- name: grafana - copy config
+  template: src=settings.py  dest=/opt/python-server-metrics-scripts/
+
+- name: python server metrics cron
+  cron: 
+    name: get_memory_usage 
+    job: 'python /opt/python-server-metrics-scripts/get_memory_usage.py > /opt/python-server-metrics-scripts/logs/get_memory_usage.log 2&1'
+- name: python server metrics cron
+  cron:
+    name: get_cpu_usage 
+    job: 'python /opt/python-server-metrics-scripts/get_cpu_usage.py > /opt/python-server-metrics-scripts/logs/get_cpu_usage.log 2&1'
+- name: python server metrics cron
+  cron:
+    name: get_disk_usage
+    minute: 0 
+    hour: 0
+    job: 'python /opt/python-server-metrics-scripts/get_disk_usage.py / > /opt/python-server-metrics-scripts/logs/get_disk_usage.log 2&1'
+

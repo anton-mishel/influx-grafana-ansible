@@ -1,0 +1,8 @@
+---
+- name: install influx task
+  hosts: influxservers
+  vars_files:
+    - vars/external_vars.yml
+  user: root
+  roles:
+    - python-server-metrics

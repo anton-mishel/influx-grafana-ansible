@@ -1,0 +1,16 @@
+---
+- name: Install EPEL repo.
+  yum:
+    name: http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    state: present
+
+- name: install collectd
+  yum: 
+    name: https://s3.amazonaws.com/yum-repo-bucket/collectd-5.4.2-1.x86_64.rpm
+    state: present
+
+- name: collectd copy conf file 
+  template: src=collectd.conf dest=/etc/collectd.conf
+
+- name: collectd  - restart
+  service: name=collectd  state=restarted
