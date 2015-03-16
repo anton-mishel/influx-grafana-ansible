@@ -28,4 +28,4 @@
   shell: mv /var/www/config.js /var/www/grafana
 
 - name: grafana-update - chown
-  shell: chown -R www-data:www-data /var/www/grafana
+  shell: chown -R nginx:nginx  /var/www/grafana
