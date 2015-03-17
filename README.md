@@ -1,6 +1,6 @@
 Ansible Playbook for InfluxDB & Grafana 
 
-This playbook aims to install InfluxDB and Grafana on a Ubuntu 14.10 droplet on DigitalOcean.
+This playbook aims to install InfluxDB and Grafana on a Centos. 
 
 The whole process took me 4 minutes from droplet creation to finished installation.
 
