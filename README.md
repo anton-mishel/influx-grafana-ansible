@@ -5,30 +5,35 @@ This playbook aims to install InfluxDB and Grafana on a Centos.
 The whole process took me 4 minutes from droplet creation to finished installation.
 
 Quick quide
+
 1. install python-devel python-pip with apt-get or yum 
+
 2. sudo pip install ansible --upgrade
+
 3. git clone https://github.com/anton-mishel/influx-grafana-ansible.git
+
 4. cd influx-grafana-ansible 
+
 5. cp hosts.sample hosts
+
 6. Edit:  hosts
+
 7. cp vars/external_vars.yml.sample vars/external_vars.yml
+
 8. Edit:  /vars/external_vars.yml
+
 9. ansible-playbook -i hosts site.yml
 
-Detailed instructions
+Detailed instructions:
 
 Grafana will be served via nginx, InfluxDB will be accessible throught it's default webserver.
-
 Install Ansible
-
 Make sure that you have Ansible installed. I wouldn't even bother to create a virtualenv for this because it is quite unlikely that you will ever need several different versions of Ansible on your machine. The latest should always do.
 
 sudo pip install ansible --upgrade
 
 Clone this repository & change variables
-
 Now clone this repository and cd into the cloned folder.
-
 Copy the hosts.example file and enter the IP address of your influx and grafana server 
 
 cp hosts.example hosts
@@ -37,9 +42,11 @@ vim hosts
 
 Copy the external_vars.yml.example file and change all usernames and passwords to your liking.
 
-#cp vars/external_vars.yml.sample vars/external_vars.yml
-#vim vars/external_vars.yml
-#Run the playbook
+cp vars/external_vars.yml.sample vars/external_vars.yml
+
+vim vars/external_vars.yml
+
+Run the playbook
 
 Execute the playbook:
 
