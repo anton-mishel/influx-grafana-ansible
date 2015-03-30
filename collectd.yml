@@ -6,10 +6,10 @@
 #  roles:
 #    - collectd-ubuntu
 - name: install collectd on genomagicapi test
-  hosts: test
+  hosts: influx
   vars_files:
     - vars/external_vars.yml
   user: root
   roles:
-    - collectd-centos
+    - collectd
 

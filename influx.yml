@@ -5,4 +5,4 @@
     - vars/external_vars.yml
   user: root
   roles:
-    - python-server-metrics
+    - influxdb
