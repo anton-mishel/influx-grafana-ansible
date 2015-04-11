@@ -1,0 +1,5 @@
+---
+ - shell: echo "centos"
+   when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int >= 6
+ - shell: echo "ubuntu"
+   when: ansible_distribution == 'Debian'

@@ -8,6 +8,11 @@
   stat: path=~/src/{{ GRAFANA_SOURCE_FILENAME }}.tar.gz
   register: grafana_download
 
+- name: install wget 
+  yum:
+   name: wget
+   state: present
+
 - name: grafana - download sources
   shell: wget http://grafanarel.s3.amazonaws.com/{{ GRAFANA_SOURCE_FILENAME }}.tar.gz
   when: not grafana_download.stat.exists

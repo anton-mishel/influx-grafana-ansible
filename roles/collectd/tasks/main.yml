@@ -1,0 +1,47 @@
+---
+- name: Install EPEL repo.
+  yum:
+    name: http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    state: present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+ 
+
+- name: install libcollectdclient
+  yum:
+    name: http://dl.marmotte.net/rpms/redhat/el6/x86_64/collectd-5.4.2-1.el6/libcollectdclient-5.4.2-1.el6.x86_64.rpm
+    state: present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: install collectd
+  yum:
+    name: http://dl.marmotte.net/rpms/redhat/el6/x86_64/collectd-5.4.2-1.el6/collectd-5.4.2-1.el6.x86_64.rpm
+    state: present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: install collectdjava
+  yum:
+    name: http://dl.marmotte.net/rpms/redhat/el6/x86_64/collectd-5.4.2-1.el6/collectd-java-5.4.2-1.el6.x86_64.rpm
+    state: present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+
+- name: collectd copy conf file 
+  template: src=collectd.conf dest=/etc/collectd.conf
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: collectd  - restart
+  service: name=collectd  state=restarted
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: install collectd
+  apt: name=collectd state=latest
+  when: ansible_distribution == 'Ubuntu'
+
+- name: collectd copy conf file 
+  template: src=collectd.conf dest=/etc/collectd/collectd.conf
+  when: ansible_distribution == 'Ubuntu'
+
+- name: collectd  - restart
+  service: name=collectd  state=restarted
+  when: ansible_distribution == 'Ubuntu'
+

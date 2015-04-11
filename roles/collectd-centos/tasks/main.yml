@@ -4,9 +4,19 @@
     name: http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
     state: present
 
-- name: install collectd
+- name: install libcollectdclient
   yum: 
-    name: https://s3.amazonaws.com/yum-repo-bucket/collectd-5.4.2-1.x86_64.rpm
+    name: http://dl.marmotte.net/rpms/redhat/el6/x86_64/collectd-5.4.2-1.el6/libcollectdclient-5.4.2-1.el6.x86_64.rpm 
+    state: present
+
+- name: install collectd
+  yum:
+    name: http://dl.marmotte.net/rpms/redhat/el6/x86_64/collectd-5.4.2-1.el6/collectd-5.4.2-1.el6.x86_64.rpm 
+    state: present
+
+- name: install collectdjava
+  yum:
+    name: http://dl.marmotte.net/rpms/redhat/el6/x86_64/collectd-5.4.2-1.el6/collectd-java-5.4.2-1.el6.x86_64.rpm
     state: present
 
 - name: collectd copy conf file 

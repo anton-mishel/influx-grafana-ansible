@@ -3,19 +3,17 @@
   hosts: influxservers
   vars_files:
     - vars/external_vars.yml
-  user: root
-
+  remote_user: ec2-user
+  sudo: yes
   roles:
     - influxdb
-    - collectd-centos
 
 - name: install grafana task
   hosts: grafanaservers
   vars_files:
     - vars/external_vars.yml
-  user: root
-
+  remote_user: ec2-user
+  sudo: yes
   roles:
     - nginx
     - grafana
-    - collectd-centos
